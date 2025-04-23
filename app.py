@@ -52,8 +52,8 @@ for filename in os.listdir(folder_path):
             nic_match = re.search(r"(?i)NIC\s+(\d+\.\d{2})", weekly_text)
             nic = float(nic_match.group(1)) if nic_match else None
             #pension "pru"
-            pension_match = re.search(r"(?i)Pru\s+AE\s+EEs\s+(\d+\.\d{2})", weekly_text)
-            pension = float(pension_match.group(1)) if pension_match else None
+            pension_match = re.search(r"(?i)(Pru\s+AE\s+EEs|Pension)\s+(\d+\.\d{2})", weekly_text)
+            pension = float(pension_match.group(2)) if pension_match else None
             #net pay
             net_match = re.search(r"(?i)Net\s+Pay\s+(\d+\.\d{2})", weekly_text)
             net = float(net_match.group(1)) if net_match else None
@@ -126,7 +126,7 @@ yearly = calculate_annually(magic)
     #for key, value in totals.items():
         #print(f"   {key.title():20}: {value:.2f}")
 
-#print(f"\nAnnually")        
-#for i,j in yearly.items():
-    #print(f"{i.title():<20}  {j:.2f}")
+print(f"\nAnnually")        
+for i,j in yearly.items():
+    print(f"{i.title():<20}  {j:.2f}")
         
