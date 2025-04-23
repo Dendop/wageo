@@ -1,0 +1,8 @@
+Annualy 2023:
+Total Payments           34787.08
+Gross Taxable            33462.87
+Tax                       4176.60
+Nic                       2597.29
+Pension                   1324.21
+Total Deductions          8098.10
+Net                      26688.98

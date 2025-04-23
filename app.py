@@ -117,7 +117,7 @@ def calculate_month(data):
         monthly_totals[month] = totals
     return monthly_totals
 
-print(data["april"])
+#print(data["april"])
 magic = calculate_month(data)
 yearly = calculate_annually(magic)
 
@@ -126,7 +126,11 @@ yearly = calculate_annually(magic)
     #for key, value in totals.items():
         #print(f"   {key.title():20}: {value:.2f}")
 
-print(f"\nAnnually")        
-for i,j in yearly.items():
-    print(f"{i.title():<20}  {j:.2f}")
-        
+#print(f"\nAnnually")        
+#for i,j in yearly.items():
+    #print(f"{i.title():<20}  {j:.2f}")
+
+with open("annually.txt", "w") as file:
+    file.write("Annualy 2023:\n")
+    for i, j in yearly.items():
+        file.write(f"{i.title():<20} {j:>12.2f}\n")
