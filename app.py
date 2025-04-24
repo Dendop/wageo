@@ -2,6 +2,7 @@ import os
 import pdfplumber
 from flask import Flask
 import re
+import pandas as pd
 
 app = Flask(__name__)
 folder_path = "payslips/"
@@ -121,16 +122,31 @@ def calculate_month(data):
 magic = calculate_month(data)
 yearly = calculate_annually(magic)
 
-#for month, totals in magic.items():
-    #print(f"\n{month.capitalize()}:")
-    #for key, value in totals.items():
-        #print(f"   {key.title():20}: {value:.2f}")
-
-#print(f"\nAnnually")        
-#for i,j in yearly.items():
-    #print(f"{i.title():<20}  {j:.2f}")
-
+#fill the annuall into txt
 with open("annually.txt", "w") as file:
     file.write("Annualy 2023:\n")
     for i, j in yearly.items():
         file.write(f"{i.title():<20} {j:>12.2f}\n")
+
+#fill the txt file    
+with open("monthly.txt", "w") as file1:
+    for i, j in magic.items():
+        file1.write(f"\n{i.title()}\n")
+        for key, total in j.items():
+            file1.write(f"{key.title():<20} {total:>11.2f}\n")   
+
+rows = []
+
+for month, sub_dic in magic.items():
+    for key, val in sub_dic.items():
+        rows.append({
+            "Total Payments": total_payments,
+            "Gross taxable" : gross_taxable,
+            "Tax" : tax,
+            "NIC" : nic,
+            "Pension" : pension,
+            "Total Deductions" : total_deductions,
+            "Net" : net
+        })
+df = pd.DataFrame(rows)
+df.to_excel("monthly.xlsx", index=False)
