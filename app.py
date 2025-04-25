@@ -135,6 +135,16 @@ with open("monthly.txt", "w") as file1:
         for key, total in j.items():
             file1.write(f"{key.title():<20} {total:>11.2f}\n")   
 
-df = pd.DataFrame(magic)
-df.to_excel("monthly.xlsx", index=False)
+#montly
+monthly_df = pd.DataFrame.from_dict(magic, orient="index")
+monthly_df.index.name = "Month"
+monthly_df.reset_index(inplace=True)
+monthly_df["Month"] = monthly_df["Month"].str.title()
 
+
+#yearly
+yearly_df = pd.DataFrame(list(yearly.items()), columns=["Category", "Amount"])
+
+with pd.ExcelWriter("output_in_excel.xlsx", engine="openpyxl") as writer:
+    monthly_df.to_excel(writer, index=False, startrow=0)
+    yearly_df.to_excel(writer, index=False, startrow=17)
