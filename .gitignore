@@ -4,3 +4,4 @@ annually.txt
 monthly.txt
 monthly.xlsx
 output_in_excel.xlsx
+__pycache__/
