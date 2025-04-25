@@ -135,18 +135,6 @@ with open("monthly.txt", "w") as file1:
         for key, total in j.items():
             file1.write(f"{key.title():<20} {total:>11.2f}\n")   
 
-rows = []
-
-for month, sub_dic in magic.items():
-    for key, val in sub_dic.items():
-        rows.append({
-            "Total Payments": total_payments,
-            "Gross taxable" : gross_taxable,
-            "Tax" : tax,
-            "NIC" : nic,
-            "Pension" : pension,
-            "Total Deductions" : total_deductions,
-            "Net" : net
-        })
-df = pd.DataFrame(rows)
+df = pd.DataFrame(magic)
 df.to_excel("monthly.xlsx", index=False)
+
