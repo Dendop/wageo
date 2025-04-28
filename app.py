@@ -118,9 +118,9 @@ def calculate_month(data):
         monthly_totals[month] = totals
     return monthly_totals
 
-#print(data["april"])
-magic = calculate_month(data)
-yearly = calculate_annually(magic)
+
+#magic = calculate_month(data)
+#yearly = calculate_annually(magic)
 
 #fill the annuall into txt
 with open("annually.txt", "w") as file:

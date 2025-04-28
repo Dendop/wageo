@@ -1,5 +1,4 @@
-from app import yearly
+from app import text,data
 
-print(yearly)
-
+print(data)
 
